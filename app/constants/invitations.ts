@@ -1,0 +1,112 @@
+import type { Invitation } from '../../shared/types/invitation'
+
+export const INVITATIONS = [
+  {
+    id: 'inv_001',
+    slug: 'the-beginning',
+    status: 'published',
+    theme: 'avant-garde',
+    title: 'The Beginning',
+    couple: {
+      partnerOne: 'Dian',
+      partnerTwo: 'Taehyun',
+      shortIntro: 'Two lives, two stories, one new beginning.',
+    },
+    weddingDate: '2027-06-19T08:00:00+07:00',
+    settings: {
+      showCountdown: true,
+      showMusicToggle: false,
+      // musicUrl: '/audio/wedding-song.mp3',
+      allowRsvp: true,
+    },
+    blocks: [
+      {
+        id: 'cover-01',
+        type: 'cover',
+        variant: 'typography',
+        eyebrow: 'A CELEBRATION OF LOVE · 19 JUNE 2027',
+        headline: 'The beginning\nof everything.',
+        supportingText: 'Together with our families, we invite you to be part of our next chapter.',
+      },
+      {
+        id: 'story-01',
+        type: 'story',
+        variant: 'editorial',
+        eyebrow: 'A NOTE FROM US',
+        title: 'Some things just\nfall into place.',
+        body: 'What started as an ordinary hello slowly became our favorite part of every day. Through little rituals, unexpected adventures, and the quiet in-between moments, we found a place that feels like home in each other.',
+        year: 'EST. 2021',
+      },
+      {
+        id: 'gallery-01',
+        type: 'gallery',
+        variant: 'masonry',
+        eyebrow: 'FRAGMENTS OF US',
+        title: 'Little moments,\nkept forever.',
+        images: [
+          {
+            id: 'photo-01',
+            src: 'https://camillasbridal.com/cdn/shop/files/IvoryOrganzaLayeredDresswithHijab_IdealforNikahCeremony-Copy.png?v=1774165048&width=1946',
+            alt: 'Ivory wedding dress with hijab photographed from the back',
+            caption: 'A quiet kind of elegance',
+          },
+          {
+            id: 'photo-02',
+            src: 'https://weddingwild.b-cdn.net/15-aesthetic-wedding-color-palettes-that-look-expensive/bridal-bouquet-sage-eucalyptus-cream-roses-marble-table-v947k__w672.webp',
+            alt: 'Bridal bouquet with cream roses and sage eucalyptus',
+            caption: 'In every little detail',
+          },
+          {
+            id: 'photo-03',
+            src: 'https://static.showit.co/1200/K9FXyp4iXYtasudQGRKqxw/176282/26a0166.jpg',
+            alt: 'Close-up of a bridal hand holding a cream wedding bouquet',
+            caption: 'Made of memories',
+          },
+        ],
+      },
+      {
+        id: 'event-01',
+        type: 'event',
+        variant: 'minimal',
+        eyebrow: 'SAVE THE DATE',
+        title: 'Join us for\nthe celebration.',
+          events: [
+            {
+              id: 'ceremony',
+              label: 'The ceremony',
+              date: 'Saturday, 19 June 2027',
+              startTime: '08:00',
+              endTime: '10:00',
+              venue: 'PH50',
+              address: 'Paku Haji, Kabupaten Bandung Barat',
+            },
+            {
+              id: 'reception',
+              label: 'The reception',
+              date: 'Saturday, 19 June 2027',
+              startTime: '11:00',
+              endTime: '14:00',
+              venue: 'PH50',
+              address: 'Paku Haji, Kabupaten Bandung Barat',
+            },
+          ],
+      },
+      {
+        id: 'rsvp-01',
+        type: 'rsvp',
+        variant: 'classic',
+        eyebrow: 'KINDLY REPLY',
+        title: 'Will you be\njoining us?',
+        description: 'It would mean the world to celebrate this day with you. Please let us know if you can make it.',
+        maxGuests: 3,
+      },
+      {
+        id: 'closing-01',
+        type: 'closing',
+        variant: 'statement',
+        message: 'We cannot wait\nto see you there.',
+        signature: 'With love, Dian & Taehyun',
+      },
+    ],
+  },
+] satisfies Invitation[]
