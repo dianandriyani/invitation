@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
   <motion.article
-    class="event-item"
+    class="grid grid-cols-[44px_1fr_auto] [align-items:start] gap-[20px] border-b border-b-line px-0 py-[34px] mobile:grid-cols-[28px_1fr] mobile:gap-[12px]"
     :initial="{ opacity: 0, x: 20 }"
     while-in-view="visible"
     :viewport="{ once: true, amount: 0.3 }"
@@ -32,28 +32,29 @@ defineProps<{
       },
     }"
   >
-    <span class="event-number">
+    <span class="font-mono text-[10px] leading-[normal] font-normal tracking-[0.08em] text-muted not-italic">
       {{ padNumber(index + 1) }}
     </span>
 
-    <div class="event-details">
-      <span class="event-label">
+    <div>
+      <span class="font-mono text-[10px] leading-[normal] font-normal tracking-[0.08em] text-muted not-italic">
         {{ event.label }}
       </span>
 
-      <h3>{{ event.venue }}</h3>
+      <h3 class="mx-0 my-[12px] font-display text-[30px] leading-[normal] font-medium not-italic mobile:text-[26px]">{{ event.venue }}</h3>
 
-      <p>
+      <p class="mx-0 my-[7px] text-[13px] text-muted">
         {{ event.date }} · {{ event.startTime }}
         <template v-if="event.endTime">
           —{{ event.endTime }}
         </template>
       </p>
 
-      <p>{{ event.address }}</p>
+      <p class="mx-0 my-[7px] text-[13px] text-muted">{{ event.address }}</p>
     </div>
 
     <AtomsTextLink
+      class="mobile:col-[2] mobile:mt-[10px]"
       :href="getMapsUrl(event.address)"
       :aria-label="`Get directions to ${event.venue}`"
     >

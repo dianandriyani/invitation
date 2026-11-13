@@ -11,35 +11,65 @@ const emit = defineEmits<{
 }>()
 </script>
 
+
 <template>
-  <Transition name="opening" appear>
+  <Transition
+    appear
+    enter-active-class="transition-[opacity,transform] duration-[350ms] ease-[ease] motion-reduce:transition-none"
+    leave-active-class="transition-[opacity,transform] duration-[350ms] ease-[ease] motion-reduce:transition-none"
+    enter-from-class="opacity-0 [transform:translateY(-12px)]"
+    leave-to-class="opacity-0 [transform:translateY(-12px)]"
+  >
     <section
-      class="invitation-opening"
+      class="relative flex min-h-svh flex-col items-center justify-center overflow-hidden bg-[#f5f2eb] px-[clamp(24px,7.2vw,116px)] py-8 text-[#242321] mobile:px-6 mobile:py-7"
       aria-label="Invitation opening"
     >
-      <div class="opening-content">
-        <span class="opening-eyebrow">
+      <!-- Main content -->
+      <div
+        class="flex w-full flex-1 flex-col items-center justify-center py-6 text-center mobile:py-4"
+      >
+        <span
+          class="font-['DM_Mono',monospace] text-[10px] tracking-[0.16em] text-[#858078] mobile:text-[9px]"
+        >
           YOU ARE INVITED TO THE CELEBRATION OF
         </span>
 
-        <h1 class="opening-title">
+        <h3
+          class="mx-0 my-7 flex flex-col items-center font-['Playfair_Display',Georgia,serif] text-[length:clamp(2.75rem,7vw,5.5rem)] leading-[0.95] font-medium tracking-[-0.055em] mobile:my-6 mobile:text-[length:clamp(2.5rem,11vw,4rem)]"
+        >
           {{ couple.partnerOne }}
-          <span>&</span>
+
+          <span class="my-1 text-[0.45em] text-[#a88e70] italic">
+            &
+          </span>
+
           {{ couple.partnerTwo }}
-        </h1>
+        </h3>
 
-        <MoleculesOrnamentDivider class="opening-divider" />
-
-        <p class="opening-recipient-label">
-          THIS INVITATION IS FOR
+        <p
+          class="font-['DM_Mono',monospace] text-[16px] tracking-[0.2em] text-[#a88e70] mobile:text-[9px]"
+        >
+          SAVE THE DATE · 19 JUNE 2027
         </p>
 
-        <p class="opening-recipient">
-          {{ recipient }}
-        </p>
+        <MoleculesOrnamentDivider class="mt-6 mb-8 mobile:mt-5 mobile:mb-7" />
+
+        <div class="flex flex-col items-center">
+          <p
+            class="mb-2 font-['DM_Mono',monospace] text-[10px] tracking-[0.16em] text-[#858078]"
+          >
+            THIS INVITATION IS FOR
+          </p>
+
+          <p
+            class="font-['Playfair_Display',Georgia,serif] text-[length:clamp(1.5rem,3vw,2.5rem)] text-[#242321] italic mobile:text-[1.5rem]"
+          >
+            {{ recipient }}
+          </p>
+        </div>
 
         <AtomsPillButton
-          class="opening-button"
+          class="mt-9 mobile:mt-8"
           @click="emit('open')"
         >
           <span>OPEN INVITATION</span>
@@ -47,143 +77,19 @@ const emit = defineEmits<{
         </AtomsPillButton>
       </div>
 
-      <div class="opening-bottomline">
-        <span>{{ couple.shortIntro }}</span>
-        <span>MADE WITH LOVE</span>
+      <!-- Footer -->
+      <div
+        class="flex w-full shrink-0 items-end justify-between gap-4 border-t border-[#ded8cc] pt-5 font-['DM_Mono',monospace] text-[9px] tracking-[0.12em] text-[#858078] mobile:pt-4 mobile:text-[8px] mobile:tracking-[0.08em]"
+      >
+        <span class="max-w-[65%] leading-relaxed">
+          {{ couple.shortIntro }}
+        </span>
+
+        <span class="shrink-0 text-right">
+          MADE WITH LOVE
+        </span>
       </div>
     </section>
   </Transition>
 </template>
 
-<style scoped>
-.invitation-opening {
-  position: relative;
-  display: flex;
-  min-height: 100svh;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
-  padding: 32px clamp(24px, 7.2vw, 116px);
-  background: #f5f2eb;
-  color: #242321;
-}
-
-.opening-bottomline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  color: #858078;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.12em;
-}
-
-.opening-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 80px 0;
-  text-align: center;
-}
-
-.opening-eyebrow,
-.opening-recipient-label {
-  color: #858078;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-}
-
-.opening-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 36px 0;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(4rem, 10vw, 9rem);
-  font-weight: 500;
-  line-height: 0.95;
-  letter-spacing: -0.065em;
-}
-
-.opening-title span {
-  margin: 12px 0;
-  color: #a88e70;
-  font-size: 0.45em;
-  font-style: italic;
-}
-
-.opening-divider {
-  margin: 20px 0 36px;
-}
-
-.opening-recipient-label {
-  margin-bottom: 12px;
-}
-
-.opening-recipient {
-  color: #242321;
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-style: italic;
-}
-
-.opening-button {
-  margin-top: 48px;
-}
-
-.opening-enter-active,
-.opening-leave-active {
-  transition:
-    opacity 350ms ease,
-    transform 350ms ease;
-}
-
-.opening-enter-from,
-.opening-leave-to {
-  opacity: 0;
-  transform: translateY(-12px);
-}
-
-@media (max-width: 700px) {
-  .invitation-opening {
-    min-height: 100svh;
-    padding: 24px;
-  }
-
-  .opening-bottomline {
-    align-items: flex-end;
-    font-size: 8px;
-    letter-spacing: 0.08em;
-  }
-
-  .opening-bottomline span:first-child {
-    max-width: 65%;
-  }
-
-  .opening-content {
-    padding: 48px 0;
-  }
-
-  .opening-title {
-    margin: 32px 0;
-    font-size: clamp(3.5rem, 15vw, 6rem);
-  }
-
-  .opening-recipient {
-    font-size: 1.6rem;
-  }
-
-  .opening-button {
-    margin-top: 40px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .opening-enter-active,
-  .opening-leave-active {
-    transition: none;
-  }
-}
-</style>

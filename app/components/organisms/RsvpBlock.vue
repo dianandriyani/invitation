@@ -51,23 +51,23 @@ function submitRsvp() {
 </script>
 
 <template>
-  <section class="rsvp-block section-shell section-grid">
+  <section class="grid grid-cols-[minmax(130px,0.7fr)_minmax(0,2fr)] gap-[clamp(36px,8vw,140px)] px-(--ag-section-padding) mobile:grid-cols-[1fr] mobile:gap-[38px] border-t border-t-line pt-[150px] pb-[170px] mobile:pt-[100px] mobile:pb-[110px]">
     <MoleculesSectionMeta
       :label="props.block.eyebrow"
       detail="YOUR REPLY"
     />
 
-    <div class="rsvp-content">
-      <h2 class="display-title section-title">
+    <div class="max-w-[800px]">
+      <h2 class="m-0 font-display text-[length:clamp(54px,8vw,112px)] leading-[0.99] font-medium tracking-(--ag-tracking-tight) whitespace-pre-line mobile:text-[length:clamp(52px,14vw,82px)]">
         {{ props.block.title }}
       </h2>
 
-      <p class="rsvp-description">
+      <p class="mx-0 mt-[35px] mb-[55px] max-w-[380px] text-[14px] leading-[1.8] text-muted mobile:mt-[28px] mobile:mb-[42px]">
         {{ props.block.description }}
       </p>
 
       <motion.form
-        class="rsvp-form"
+        class="flex max-w-[520px] flex-col gap-[13px]"
         :initial="{ opacity: 0, y: 20 }"
         while-in-view="visible"
         :viewport="{ once: true }"
@@ -87,13 +87,14 @@ function submitRsvp() {
         @submit.prevent="submitRsvp"
       >
         <template v-if="!submitted">
-          <label :for="guestNameId">
+          <AtomsFieldLabel :for="guestNameId">
             YOUR NAME
-          </label>
+          </AtomsFieldLabel>
 
           <input
             :id="guestNameId"
             v-model="guestName"
+            class="rounded-none [border-width:0_0_1px] [border-style:none_none_solid] [border-color:currentColor_currentColor_var(--theme-line)] bg-transparent px-0 py-[14px] text-ink [outline:none] [transition:border-color_var(--ag-duration-fast,180ms)_ease] focus:border-ink"
             autocomplete="name"
             maxlength="100"
             placeholder="Full name"
@@ -118,7 +119,7 @@ function submitRsvp() {
           />
 
           <button
-            class="submit-button"
+            class="mt-[22px] flex cursor-pointer items-center justify-between border border-line bg-ink px-[18px] py-[17px] font-mono text-[10px] leading-[normal] font-normal tracking-[0.06em] text-canvas not-italic [transition:background-color_var(--ag-duration-fast,180ms)_ease,color_var(--ag-duration-fast,180ms)_ease,border-color_var(--ag-duration-fast,180ms)_ease] hover:opacity-82"
             type="submit"
             :disabled="!canSubmit"
           >
@@ -136,7 +137,7 @@ function submitRsvp() {
         />
       </motion.form>
 
-      <p class="demo-note">
+      <p class="mt-[20px] font-mono text-[9px] leading-[normal] font-normal tracking-[0.08em] text-muted not-italic">
         DEMO ONLY · RESPONSES ARE NOT SAVED TO A SERVER
       </p>
     </div>

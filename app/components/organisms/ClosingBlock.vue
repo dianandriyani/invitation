@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { motion } from 'motion-v'
 
@@ -13,15 +12,15 @@ const props = defineProps<{
 
 <template>
   <section
-    class="closing-block section-shell"
+    class="flex min-h-[620px] flex-col items-center justify-center border-t border-t-line px-(--ag-section-padding) pt-(--ag-space-7) pb-(--ag-space-7) text-center mobile:min-h-[520px] mobile:pt-(--ag-space-6) mobile:pb-(--ag-space-6)"
     :data-variant="props.block.variant"
   >
-    <span class="closing-eyebrow">
+    <span class="mb-[clamp(28px,4vw,44px)] font-mono text-(length:--ag-text-xs) leading-[normal] font-normal tracking-(--ag-tracking-wide) text-muted not-italic">
       UNTIL THEN,
     </span>
 
     <motion.h2
-      class="display-title closing-title"
+      class="mx-0 my-[34px] max-w-[850px] font-display text-[length:clamp(3rem,7vw,6.5rem)] leading-[1] font-medium tracking-[-0.055em] whitespace-pre-line mobile:text-[length:clamp(2.7rem,11vw,4.5rem)]"
       :initial="{ opacity: 0, y: 30 }"
       while-in-view="visible"
       :viewport="{ once: true }"
@@ -43,7 +42,7 @@ const props = defineProps<{
     </motion.h2>
 
     <motion.p
-      class="closing-signature"
+      class="mt-[clamp(28px,4vw,44px)] font-display text-[length:clamp(1.25rem,2.2vw,1.8rem)] leading-[1.5] font-normal text-ink italic mobile:mt-[28px] mobile:text-[1.25rem]"
       :initial="{ opacity: 0, y: 12 }"
       while-in-view="visible"
       :viewport="{ once: true }"
@@ -65,64 +64,6 @@ const props = defineProps<{
       {{ block.signature }}
     </motion.p>
 
-    <AtomsAsteriskMark class="closing-symbol" />
+    <AtomsAsteriskMark class="mt-[clamp(48px,7vw,80px)] text-[1.5rem] text-accent" />
   </section>
 </template>
-
-<style scoped>
-.closing-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-top: var(--ag-space-7);
-  padding-bottom: var(--ag-space-7);
-}
-
-.closing-eyebrow {
-  margin-bottom: clamp(28px, 4vw, 44px);
-  color: var(--ag-muted);
-  font-family: var(--ag-font-mono);
-  font-size: var(--ag-text-xs);
-  letter-spacing: var(--ag-tracking-wide);
-}
-
-.closing-title {
-  max-width: 850px;
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  line-height: 1;
-  font-weight: 500;
-  letter-spacing: -0.055em;
-}
-
-.closing-signature {
-  margin-top: clamp(28px, 4vw, 44px);
-  color: var(--ag-ink);
-  font-family: var(--ag-font-display);
-  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
-  font-style: italic;
-  line-height: 1.5;
-}
-
-.closing-symbol {
-  margin-top: clamp(48px, 7vw, 80px);
-  color: var(--ag-accent);
-  font-size: 1.5rem;
-}
-
-@media (max-width: 700px) {
-  .closing-block {
-    padding-top: var(--ag-space-6);
-    padding-bottom: var(--ag-space-6);
-  }
-
-  .closing-title {
-    font-size: clamp(2.7rem, 11vw, 4.5rem);
-  }
-
-  .closing-signature {
-    margin-top: 28px;
-    font-size: 1.25rem;
-  }
-}
-</style>

@@ -32,7 +32,7 @@ provide(
 <template>
   <TemplatesThemeProvider :theme="invitation.theme">
     <main
-      class="invitation-page"
+      class="mx-auto max-w-(--ag-container)"
       :data-invitation-id="invitation.id"
       :data-invitation-slug="invitation.slug"
     >

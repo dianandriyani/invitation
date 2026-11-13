@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { padNumber } from '~/utils/format'
 
@@ -69,18 +68,21 @@ onUnmounted(() => {
 <template>
   <section
     v-if="countdown"
-    class="countdown-display section-shell"
+    class="flex flex-col items-center px-(--ag-section-padding) pt-(--ag-space-6) pb-(--ag-space-7) mobile:pt-(--ag-space-5) mobile:pb-(--ag-space-6)"
     aria-label="Wedding countdown"
   >
-    <div class="countdown-heading">
-      <span class="countdown-line" />
-      <p class="countdown-eyebrow">
+    <div class="mb-[48px] flex w-full items-center justify-center gap-[20px] mobile:mb-[36px] mobile:gap-[12px]">
+      <span class="h-px w-[clamp(24px,8vw,100px)] bg-line" />
+      <p class="shrink-0 text-center font-mono text-(length:--ag-text-xs) tracking-(--ag-tracking-wide) text-muted mobile:text-[9px]">
         {{ isExpired ? 'THE DAY HAS ARRIVED' : 'COUNTING DOWN TO OUR DAY' }}
       </p>
-      <span class="countdown-line" />
+      <span class="h-px w-[clamp(24px,8vw,100px)] bg-line" />
     </div>
 
-    <div v-if="!isExpired" class="countdown-grid">
+    <div
+      v-if="!isExpired"
+      class="grid w-[min(100%,900px)] grid-cols-4"
+    >
       <AtomsCountdownUnit
         v-for="unit in units"
         :key="unit.label"
@@ -89,72 +91,11 @@ onUnmounted(() => {
       />
     </div>
 
-    <p v-else class="countdown-expired">
+    <p
+      v-else
+      class="text-center font-display text-[length:clamp(2rem,5vw,4rem)] text-ink italic"
+    >
       Today, a new chapter begins.
     </p>
   </section>
 </template>
-
-<style scoped>
-.countdown-display {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: var(--ag-space-6);
-  padding-bottom: var(--ag-space-7);
-}
-
-.countdown-heading {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  margin-bottom: 48px;
-}
-
-.countdown-line {
-  width: clamp(24px, 8vw, 100px);
-  height: 1px;
-  background: var(--ag-line);
-}
-
-.countdown-eyebrow {
-  flex-shrink: 0;
-  color: var(--ag-muted);
-  font-family: var(--ag-font-mono);
-  font-size: var(--ag-text-xs);
-  letter-spacing: var(--ag-tracking-wide);
-  text-align: center;
-}
-
-.countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  width: min(100%, 900px);
-}
-
-.countdown-expired {
-  color: var(--ag-ink);
-  font-family: var(--ag-font-display);
-  font-size: clamp(2rem, 5vw, 4rem);
-  font-style: italic;
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  .countdown-display {
-    padding-top: var(--ag-space-5);
-    padding-bottom: var(--ag-space-6);
-  }
-
-  .countdown-heading {
-    gap: 12px;
-    margin-bottom: 36px;
-  }
-
-  .countdown-eyebrow {
-    font-size: 9px;
-  }
-}
-</style>

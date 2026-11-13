@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { motion } from 'motion-v'
 
@@ -63,19 +62,18 @@ const location = computed(() => {
 
 <template>
   <section
-    class="cover-block section-shell"
-    :class="`cover-block--${props.block.variant}`"
+    class="flex min-h-[max(720px,100svh)] flex-col justify-between px-(--ag-section-padding) pt-[34px] pb-[28px] mobile:min-h-svh mobile:pt-[24px] mobile:pb-[22px]"
     :data-variant="props.block.variant"
   >
-    <div class="cover-topline">
+    <div class="grid grid-cols-[1fr_2fr_1fr] items-center gap-4 font-mono text-[12px] leading-[normal] font-normal tracking-[0.08em] text-muted not-italic mobile:grid-cols-[1fr_1fr] mobile:text-[10px]">
       <span>{{ invitation?.title.toUpperCase() ?? 'EF—001' }}</span>
-      <span>{{ block.eyebrow }}</span>
-      <span>SCROLL TO EXPLORE ↓</span>
+      <span class="text-center mobile:hidden">{{ block.eyebrow }}</span>
+      <span class="text-right">SCROLL TO EXPLORE ↓</span>
     </div>
 
-    <div class="cover-content">
+    <div class="mx-auto mt-[90px] mb-[110px] w-full max-w-(--ag-content-width)">
       <motion.div
-        class="cover-index"
+        class="mb-[clamp(28px,4vw,52px)] max-w-full font-mono text-[length:clamp(1rem,2vw,1.5rem)] leading-[1.4] font-medium tracking-[0.12em] text-accent uppercase not-italic mobile:mb-[28px] mobile:text-[length:clamp(0.85rem,4vw,1.1rem)] mobile:tracking-[0.08em]"
         :initial="{ opacity: 0, y: 16 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.7, delay: 0.1 }"
@@ -84,7 +82,7 @@ const location = computed(() => {
       </motion.div>
 
       <motion.h1
-        class="display-title cover-title"
+        class="mx-0 mt-[26px] mb-[34px] max-w-[1100px] font-display text-[length:clamp(4rem,10.5vw,9.5rem)] leading-[0.92] font-medium tracking-(--ag-tracking-tight) whitespace-pre-line mobile:mt-[22px] mobile:mb-[28px] mobile:text-[length:clamp(3.5rem,15vw,6rem)]"
         :initial="{ opacity: 0, y: 36 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{
@@ -97,7 +95,7 @@ const location = computed(() => {
       </motion.h1>
 
       <motion.p
-        class="cover-description"
+        class="mt-[clamp(28px,4vw,48px)] ml-[48%] max-w-[420px] text-[length:clamp(0.9rem,1.2vw,1.05rem)] leading-[1.85] text-muted mobile:mt-[28px] mobile:ml-[18%] mobile:max-w-[320px] mobile:text-[0.9rem]"
         :initial="{ opacity: 0, y: 18 }"
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.8, delay: 0.55 }"
@@ -106,56 +104,10 @@ const location = computed(() => {
       </motion.p>
     </div>
 
-    <div class="cover-bottomline">
-      <span>{{ weddingDate || 'AN OPENING CHAPTER' }}</span>
-      <AtomsAsteriskMark class="cover-asterisk" />
-      <span>{{ location }}</span>
+    <div class="grid grid-cols-[1fr_2fr_1fr] items-center gap-4 font-mono text-[12px] leading-[normal] font-normal tracking-[0.08em] text-muted not-italic mobile:grid-cols-[1fr_1fr] mobile:text-[10px]">
+      <span class="text-2xl">{{ weddingDate || 'AN OPENING CHAPTER' }}</span>
+      <AtomsAsteriskMark class="text-center text-[23px] text-accent mobile:hidden" />
+      <span class="text-right text-xl">{{ location }}</span>
     </div>
   </section>
 </template>
-
-<style scoped>
-.cover-index {
-  max-width: 100%;
-  margin-bottom: clamp(28px, 4vw, 52px);
-  color: var(--ag-accent);
-  font-family: var(--ag-font-mono);
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.cover-title {
-  max-width: 1100px;
-  font-size: clamp(4rem, 10.5vw, 9.5rem);
-  line-height: 0.92;
-}
-
-.cover-description {
-  max-width: 420px;
-  margin-top: clamp(28px, 4vw, 48px);
-  font-size: clamp(0.9rem, 1.2vw, 1.05rem);
-  line-height: 1.85;
-  color: var(--ag-muted);
-}
-
-@media (max-width: 700px) {
-  .cover-index {
-    margin-bottom: 28px;
-    font-size: clamp(0.85rem, 4vw, 1.1rem);
-    letter-spacing: 0.08em;
-  }
-
-  .cover-title {
-    font-size: clamp(3.5rem, 15vw, 6rem);
-  }
-
-  .cover-description {
-    max-width: 320px;
-    margin-top: 28px;
-    font-size: 0.9rem;
-  }
-}
-</style>

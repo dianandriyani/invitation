@@ -1,6 +1,6 @@
 # EVERFORM
 
-Experimental digital invitation engine built with Nuxt 4, Vue 3, TypeScript, and Motion for Vue.
+Experimental digital invitation engine built with Nuxt 4, Vue 3, TypeScript, Tailwind CSS v4, and Motion for Vue.
 
 ## Requirements
 
@@ -42,6 +42,15 @@ app/
 └── pages/index.vue   # public invitation route
 shared/types/         # framework-agnostic invitation and theme contracts
 ```
+
+### Styling
+
+Styling uses **Tailwind CSS v4** (via `@tailwindcss/vite`) with utility classes written directly in the components.
+
+- `app/assets/css/main.css` is the Tailwind entry. It imports the theme and utilities layers and adds a few base rules.
+- **Preflight is intentionally not imported.** The design relies on the browser's default element styles, such as heading and paragraph margins.
+- Theme tokens are exposed as utilities: `bg-canvas`, `text-ink`, `text-muted`, `text-accent`, `border-line`, `bg-surface`, `font-display`, `font-mono`, `font-sans`. They resolve to the active theme's CSS variables (`.theme-avant-garde` in `app/assets/css/main.css`), so adding a theme does not require touching templates.
+- Use the `mobile:` variant for the `max-width: 700px` breakpoint.
 
 ### Engine boundaries
 

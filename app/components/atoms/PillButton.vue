@@ -1,56 +1,8 @@
 <template>
   <button
     type="button"
-    class="pill-button"
+    class="flex min-h-[58px] cursor-pointer items-center justify-center gap-[32px] rounded-[999px] border border-[#242321] bg-[#242321] px-[28px] py-0 font-['DM_Mono',monospace] text-[10px] tracking-[0.12em] text-[#f5f2eb] [transition:background_200ms_ease,color_200ms_ease,transform_200ms_ease] hover:bg-transparent hover:text-[#242321] hover:[transform:translateY(-3px)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#a88e70] mobile:min-h-[54px] mobile:w-full mobile:max-w-[280px] motion-reduce:[transition:none]"
   >
     <slot />
   </button>
 </template>
-
-<style scoped>
-.pill-button {
-  display: flex;
-  min-height: 58px;
-  align-items: center;
-  justify-content: center;
-  gap: 32px;
-  padding: 0 28px;
-  border: 1px solid #242321;
-  border-radius: 999px;
-  background: #242321;
-  color: #f5f2eb;
-  cursor: pointer;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  transition:
-    background 200ms ease,
-    color 200ms ease,
-    transform 200ms ease;
-}
-
-.pill-button:hover {
-  transform: translateY(-3px);
-  background: transparent;
-  color: #242321;
-}
-
-.pill-button:focus-visible {
-  outline: 2px solid #a88e70;
-  outline-offset: 4px;
-}
-
-@media (max-width: 700px) {
-  .pill-button {
-    width: 100%;
-    max-width: 280px;
-    min-height: 54px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pill-button {
-    transition: none;
-  }
-}
-</style>

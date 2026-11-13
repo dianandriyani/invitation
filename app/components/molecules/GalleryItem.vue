@@ -8,12 +8,14 @@ import type { GalleryImage } from '../../../shared/types/invitation'
 defineProps<{
   item: GalleryImage
   index: number
+  /** Aspect-ratio utility for the image frame, decided by the gallery layout. */
+  frameClass: string
 }>()
 </script>
 
 <template>
   <motion.figure
-    class="gallery-item"
+    class="group m-0 min-w-0 overflow-hidden"
     :initial="{ opacity: 0, y: 32 }"
     while-in-view="visible"
     :viewport="{ once: true, amount: 0.15 }"
@@ -32,8 +34,13 @@ defineProps<{
       },
     }"
   >
-    <div class="gallery-image">
+    <div
+      class="w-full overflow-hidden bg-surface"
+      :class="frameClass"
+    >
       <img
+        class="block h-full w-full object-cover [filter:saturate(0.78)] [transition:transform_900ms_var(--ag-ease-standard)] group-hover:[filter:saturate(1)] group-hover:[transform:scale(1.035)] motion-reduce:[transition:none]"
+        :class="index === 2 ? 'aspect-[16/9]' : 'aspect-[4/5]'"
         :src="item.src"
         :alt="item.alt"
         loading="lazy"
@@ -41,55 +48,12 @@ defineProps<{
       >
     </div>
 
-    <figcaption v-if="item.caption">
-      <span>{{ padNumber(index + 1) }}</span>
+    <figcaption
+      v-if="item.caption"
+      class="flex items-center gap-[12px] pt-[12px] font-mono text-(length:--ag-text-xs) leading-[normal] font-normal tracking-[0.04em] text-muted not-italic"
+    >
+      <span class="text-ink">{{ padNumber(index + 1) }}</span>
       {{ item.caption }}
     </figcaption>
   </motion.figure>
 </template>
-
-<style scoped>
-.gallery-item {
-  min-width: 0;
-  margin: 0;
-}
-
-.gallery-image {
-  overflow: hidden;
-  width: 100%;
-  background: var(--ag-surface);
-}
-
-.gallery-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 900ms var(--ag-ease-standard);
-}
-
-.gallery-item:hover .gallery-image img {
-  transform: scale(1.035);
-}
-
-.gallery-item figcaption {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  padding-top: 12px;
-  color: var(--ag-muted);
-  font-family: var(--ag-font-mono);
-  font-size: var(--ag-text-xs);
-  letter-spacing: 0.04em;
-}
-
-.gallery-item figcaption span {
-  color: var(--ag-ink);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .gallery-image img {
-    transition: none;
-  }
-}
-</style>

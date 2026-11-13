@@ -10,13 +10,12 @@ const emit = defineEmits<{
 
 <template>
   <div
-    class="rsvp-attendance"
     role="group"
     aria-label="Will you be attending?"
   >
     <span>WILL YOU BE THERE?</span>
 
-    <div class="rsvp-options">
+    <div class="flex flex-wrap gap-[10px] mobile:flex-col">
       <AtomsOptionButton
         :selected="value === 'yes'"
         @click="emit('select', 'yes')"

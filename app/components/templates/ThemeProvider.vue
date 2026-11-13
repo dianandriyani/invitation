@@ -16,7 +16,7 @@ const definition = computed(() => {
 
 <template>
   <div
-    class="invitation-theme"
+    class="min-h-screen overflow-clip bg-canvas text-ink"
     :class="definition.className"
     :style="definition.variables"
   >
